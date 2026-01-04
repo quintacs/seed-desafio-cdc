@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
 import livraria.api.record.DadosAutor;
 import livraria.api.service.AutorService;
 
@@ -23,7 +24,7 @@ public class AutorController {
 	}
 	
 	@PostMapping
-	public void cadastrar(@RequestBody DadosAutor dadosAutor) {
+	public void cadastrar(@RequestBody @Valid DadosAutor dadosAutor) {
 		
 		autorService.save(dadosAutor);
 		
