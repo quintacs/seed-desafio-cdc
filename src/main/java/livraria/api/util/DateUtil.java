@@ -3,6 +3,9 @@ package livraria.api.util;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -12,6 +15,9 @@ public class DateUtil {
 	    private static Calendar calendar;
 	    private static DateFormat df;
 	    private static java.sql.Date dateSQL;
+	    
+	    private static String dmyhms = "dd/MM/yyyy hh:mm:ss";
+	    private static String dmy = "dd/MM/yyyy";
 	    
 	    private DateUtil(){
 	    	
@@ -100,5 +106,35 @@ public class DateUtil {
 	       dateSQL = new java.sql.Date(timestamp.getTime());
 	        df = new SimpleDateFormat("dd/MM/yyyy");       
 	       return df.format(dateSQL);
+	   }
+	   
+	   public static LocalDateTime parsetDateTimeDMYHHMMSS(String data) {
+		   DateTimeFormatter formato = DateTimeFormatter.ofPattern(dmyhms);
+		   return LocalDateTime.parse(data,formato);
+	   }
+	   
+	   public static LocalDateTime parseDateTimeDMY(String data) {
+		   DateTimeFormatter formato = DateTimeFormatter.ofPattern(dmy);
+		   return LocalDateTime.parse(data,formato);
+	   }
+	   
+	   public static LocalDate parseDateDMY(String data) {
+		   DateTimeFormatter formato = DateTimeFormatter.ofPattern(dmy);
+		   return LocalDate.parse(data,formato);
+	   }
+	   
+	   public static String formatDateTimeDMYHHMMSS(LocalDateTime data) {
+		   DateTimeFormatter formato = DateTimeFormatter.ofPattern(dmyhms);
+		   return data.format(formato);
+	   }
+	   
+	   public static String formatDateTimeDMY(LocalDateTime data) {
+		   DateTimeFormatter formato = DateTimeFormatter.ofPattern(dmy);
+		   return data.format(formato);
+	   }
+	   
+	   public static String formatDateDMY(LocalDate data) {
+		   DateTimeFormatter formato = DateTimeFormatter.ofPattern(dmy);
+		   return data.format(formato);
 	   }
 }
