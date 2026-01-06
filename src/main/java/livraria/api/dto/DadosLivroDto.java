@@ -19,8 +19,8 @@ public class DadosLivroDto {
 	private String dataPublicacaoFormatada;
 	private Long idCategoria;
 	private Long idAutor;
-	 String nmCategoria;
-	 String nmAutor;
+	private String nmCategoria;
+	private String nmAutor;
 	
 	public DadosLivroDto() {}
 	

@@ -10,7 +10,7 @@ import jakarta.persistence.Query;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class ExistIdValidator implements ConstraintValidator<ExistId, Object>{
+public class ExistIdValidator implements ConstraintValidator<ExistId, Long>{
 
 	private String domainAttribute;
 	private Class<?> klass;
@@ -26,8 +26,11 @@ public class ExistIdValidator implements ConstraintValidator<ExistId, Object>{
 	}
 	
 	@Override
-	public boolean isValid(Object value, ConstraintValidatorContext context) {
+	public boolean isValid(Long value, ConstraintValidatorContext context) {
 		
+		if(value == null) {
+			return true;
+		}
 		Query query = manager.createQuery("select 1 from "+klass.getName()+" where "+domainAttribute+" = :value");
 		query.setParameter("value", value);
 		List<?> list = query.getResultList();

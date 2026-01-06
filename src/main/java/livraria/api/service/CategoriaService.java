@@ -8,10 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.validation.Valid;
-import livraria.api.dto.DadosAutorDTO;
 import livraria.api.dto.DadosCategoriaDto;
 import livraria.api.form.CategoriaForm;
-import livraria.api.modelo.Autor;
 import livraria.api.modelo.Categoria;
 import livraria.api.repository.CategoriaRepository;
 

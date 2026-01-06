@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.validation.Valid;
-import livraria.api.dto.DadosAutorDTO;
+import livraria.api.dto.DadosAutorDto;
 import livraria.api.form.AutorForm;
 import livraria.api.modelo.Autor;
 import livraria.api.repository.AutorRepository;
@@ -32,11 +32,11 @@ public class AutorService {
 		autorRepository.save(autor);
 	}
 	
-	public List<DadosAutorDTO> findAll() {
+	public List<DadosAutorDto> findAll() {
 		
-		List<DadosAutorDTO> listDadosAutor = new ArrayList<DadosAutorDTO>();
+		List<DadosAutorDto> listDadosAutor = new ArrayList<DadosAutorDto>();
 		
-		autorRepository.findAll().forEach(autor -> listDadosAutor.add(new DadosAutorDTO(autor)));
+		autorRepository.findAll().forEach(autor -> listDadosAutor.add(new DadosAutorDto(autor)));
 		
 		
 		return listDadosAutor;
@@ -52,20 +52,20 @@ public class AutorService {
 	    return null;
 	}
 
-	public DadosAutorDTO consultar(AutorForm autorForm) throws IllegalArgumentException {
+	public DadosAutorDto consultar(AutorForm autorForm) throws IllegalArgumentException {
 		
-		DadosAutorDTO dadosAutorDto = autorRepository.findByEmailAndNome(autorForm.getEmail(),autorForm.getNome());
+		DadosAutorDto dadosAutorDto = autorRepository.findByEmailAndNome(autorForm.getEmail(),autorForm.getNome());
 		
 		return dadosAutorDto;
 	}
 
-	public DadosAutorDTO consultar(Long id) {
+	public DadosAutorDto consultar(Long id) {
 	
 		Optional<Autor> optionalAutor = autorRepository.findById(id);
 		
 		if(optionalAutor.isPresent()) {
 			Autor autor = optionalAutor.get();
-			return new DadosAutorDTO(autor);
+			return new DadosAutorDto(autor);
 		}
 		return null;
 	}

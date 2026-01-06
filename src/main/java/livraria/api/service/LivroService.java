@@ -7,10 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import livraria.api.dto.DadosCategoriaDto;
 import livraria.api.dto.DadosLivroDto;
 import livraria.api.form.LivroForm;
-import livraria.api.modelo.Categoria;
 import livraria.api.modelo.Livro;
 import livraria.api.repository.LivroRepository;
 

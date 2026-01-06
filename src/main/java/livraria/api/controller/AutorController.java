@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import jakarta.validation.Valid;
-import livraria.api.dto.DadosAutorDTO;
+import livraria.api.dto.DadosAutorDto;
 import livraria.api.form.AutorForm;
 import livraria.api.service.AutorService;
 import livraria.api.validator.DadosAutorValidator;
@@ -37,23 +37,23 @@ public class AutorController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<DadosAutorDTO>>  listar() {
+	public ResponseEntity<List<DadosAutorDto>>  listar() {
 		
 		return ResponseEntity.ok(autorService.findAll());
 	}
 	
 	@PostMapping
-	public ResponseEntity<DadosAutorDTO> cadastrar(@RequestBody @Valid AutorForm autorForm, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<DadosAutorDto> cadastrar(@RequestBody @Valid AutorForm autorForm, UriComponentsBuilder uriBuilder) {
 		
 		autorService.save(autorForm);
-		DadosAutorDTO autor = autorService.consultar(autorForm);
+		DadosAutorDto autor = autorService.consultar(autorForm);
 		URI uri = uriBuilder.path("/Autores/{id}").buildAndExpand(autor.getId()).toUri();
 		return ResponseEntity.created(uri).body(autor);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<DadosAutorDTO> detalhar(@PathVariable Long id) {
-		DadosAutorDTO dadosAutorDTO = autorService.consultar(id);
+	public ResponseEntity<DadosAutorDto> detalhar(@PathVariable Long id) {
+		DadosAutorDto dadosAutorDTO = autorService.consultar(id);
 		
 		if (dadosAutorDTO != null) {
 			return ResponseEntity.ok(dadosAutorDTO);

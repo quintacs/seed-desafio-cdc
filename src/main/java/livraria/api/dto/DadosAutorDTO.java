@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import livraria.api.modelo.Autor;
 import livraria.api.util.DateUtil;
 
-public class DadosAutorDTO {
+public class DadosAutorDto {
 
 	private Long id;
 	private String nome;
@@ -14,9 +14,9 @@ public class DadosAutorDTO {
 	private LocalDateTime dataCadastro;
 	private String dataCadastroFormatada;
 	
-	public DadosAutorDTO() {}
+	public DadosAutorDto() {}
 	
-	public DadosAutorDTO(Autor autor) {
+	public DadosAutorDto(Autor autor) {
 		parse(autor);
 	}
 	
