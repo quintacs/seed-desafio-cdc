@@ -1,12 +1,12 @@
 package livraria.api.form;
 
-import org.hibernate.validator.internal.constraintvalidators.hv.br.CNPJValidator;
-import org.hibernate.validator.internal.constraintvalidators.hv.br.CPFValidator;
-import org.springframework.util.Assert;
+import java.util.List;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import livraria.api.bean.validation.Documento;
 import livraria.api.bean.validation.ExistId;
 import livraria.api.modelo.Estados;
 import livraria.api.modelo.Paises;
@@ -21,6 +21,7 @@ public class CompraForm {
 	@NotBlank
 	private String 	sobrenome;
 	@NotBlank
+	@Documento(message = "O documento deve ser um CPF ou CNPJ válido")
 	private String 	documento ; //(cpf/cnpj)
 	@NotBlank
 	private String 	endereco;
@@ -105,8 +106,9 @@ public class CompraForm {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
+	
 	public boolean documentoValido() {
-		Assert.hasLength(documento, "Documento não preenchido");
+		/*Assert.hasLength(documento, "Documento não preenchido");
 		
 		CPFValidator cpfValidator = new CPFValidator();
 		cpfValidator.initialize(null);
@@ -114,7 +116,8 @@ public class CompraForm {
 		CNPJValidator cnpjValidator = new CNPJValidator();
 		cnpjValidator.initialize(null);
 		
-		return cpfValidator.isValid(documento, null) || cnpjValidator.isValid(documento, null);
-		
+		return cpfValidator.isValid(documento, null) == true ? true : cnpjValidator.isValid(documento, null) == true ? true : false;
+		*/
+		return false;
 	}
 }

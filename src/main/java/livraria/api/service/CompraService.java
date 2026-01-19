@@ -27,6 +27,10 @@ public class CompraService {
 		compraRepository.save(compra);
 	}
 	
+	public boolean existe(Long id) {
+		return compraRepository.existsById(id);
+	}
+	
 	public List<DadosCompraDto> findAll() {
 		
 		List<DadosCompraDto> dadosCompraDtos = new ArrayList<DadosCompraDto>();

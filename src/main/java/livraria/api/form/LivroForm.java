@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import jakarta.annotation.Nonnull;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -39,10 +38,10 @@ public class LivroForm {
 	@Future(message = "A data deve ser futura ")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
 	private LocalDateTime dataPublicacao;
-	@Nonnull
+	@NotNull
 	@ExistId(domainClass = Categoria.class, fieldName = "id")
 	private Long idCategoria;
-	@Nonnull
+	@NotNull
 	@ExistId(domainClass = Autor.class, fieldName = "id")
 	private Long idAutor;
 	

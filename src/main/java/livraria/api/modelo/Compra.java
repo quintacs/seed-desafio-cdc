@@ -1,9 +1,13 @@
 package livraria.api.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import livraria.api.form.CompraForm;
 
@@ -25,11 +29,13 @@ public class Compra {
 	private Long 	idEstado;//(caso aquele pais tenha estado)
 	private String 	telefone;
 	private String 	cep;
+	@OneToOne(mappedBy = "compra")
+	private List<ItenPedido> itensPedido;
 	
 	public Compra() {}
 	
 	public Compra(String email, String nome, String sobrenome, String documento, String endereco, String complemento,
-			String cidade, Long idPais, Long idEstado, String telefone, String cep) {
+			String cidade, Long idPais, Long idEstado, String telefone, String cep, List<ItenPedido> itensPedido) {
 		super();
 		this.email = email;
 		this.nome = nome;
@@ -42,6 +48,7 @@ public class Compra {
 		this.idEstado = idEstado;
 		this.telefone = telefone;
 		this.cep = cep;
+		this.itensPedido = itensPedido;
 	}
 	
 	public Compra(CompraForm compraForm) {
@@ -57,8 +64,18 @@ public class Compra {
 		this.idEstado = compraForm.getIdEstado();
 		this.telefone = compraForm.getTelefone();
 		this.cep = compraForm.getCep();
+		/*
+		 * this.itensPedido = new ArrayList<ItenPedido>(); List<Long> idItens =
+		 * compraForm.getListIdItensPedido(); for(Long id : idItens) { ItenPedido
+		 * itenPedido = new ItenPedido(); itenPedido.setId(id);
+		 * this.itensPedido.add(itenPedido); }
+		 */
 	}
-	
+
+	public void setIdEstado(Long idEstado) {
+		this.idEstado = idEstado;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -130,5 +147,13 @@ public class Compra {
 	}
 	public void setCep(String cep) {
 		this.cep = cep;
+	}
+
+	public List<ItenPedido> getItensPedido() {
+		return itensPedido;
+	}
+
+	public void setItensPedido(List<ItenPedido> itensPedido) {
+		this.itensPedido = itensPedido;
 	}
 }

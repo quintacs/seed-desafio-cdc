@@ -23,7 +23,7 @@ public class VerificaDocumentoCpfCnpjValidator implements Validator{
 			return ;
 		}
 		CompraForm compraForm = (CompraForm)target;
-		if(!compraForm.documentoValido()) {
+		if(compraForm.documentoValido()) {
 			errors.rejectValue("documento",null,"O documento precisa ser um cpf ou cnpj");
 		}
 		

@@ -11,4 +11,5 @@ public interface CompraRepository extends JpaRepository<Compra, Long>{
 
 	DadosCompraDto findByNome(String nome);
 
+	
 }

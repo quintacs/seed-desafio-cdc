@@ -34,7 +34,7 @@ public class ExistIdValidator implements ConstraintValidator<ExistId, Long>{
 		Query query = manager.createQuery("select 1 from "+klass.getName()+" where "+domainAttribute+" = :value");
 		query.setParameter("value", value);
 		List<?> list = query.getResultList();
-		Assert.isTrue(list.size()<=1, "Foi encontrado mais de um "+klass+" com o atributo "+domainAttribute+" = "+value);
+		Assert.isTrue(list.size() <= 1, "Foi encontrado mais de um "+klass+" com o atributo "+domainAttribute+" = "+value);
 		
 		return !list.isEmpty();
 	}

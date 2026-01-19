@@ -1,5 +1,8 @@
 package livraria.api.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import livraria.api.modelo.Compra;
 
 public class DadosCompraDto {
@@ -16,11 +19,12 @@ public class DadosCompraDto {
 	private Long 	idEstado;//(caso aquele pais tenha estado)
 	private String 	telefone;
 	private String 	cep;
+	//private List<DadosItenPedidoDto> itensPedidodDto;
 	
 	public DadosCompraDto() {}
 	
 	public DadosCompraDto(Long id, String email, String nome, String sobrenome, String documento, String endereco,
-			String complemento, String cidade, Long idPais, Long idEstado, String telefone, String cep) {
+			String complemento, String cidade, Long idPais, Long idEstado, String telefone, String cep) {//, List<DadosItenPedidoDto> itensPedidodDto
 		super();
 		this.id = id;
 		this.email = email;
@@ -34,6 +38,7 @@ public class DadosCompraDto {
 		this.idEstado = idEstado;
 		this.telefone = telefone;
 		this.cep = cep;
+		//this.itensPedidodDto = itensPedidodDto;
 	}
 	
 	public DadosCompraDto(Compra compra) {
@@ -50,6 +55,8 @@ public class DadosCompraDto {
 		this.idEstado = compra.getIdEstado();
 		this.telefone = compra.getTelefone();
 		this.cep = compra.getCep();
+		//this.itensPedidodDto = new ArrayList<DadosItenPedidoDto>();
+		//compra.getItensPedido().forEach(iten -> this.itensPedidodDto.add(new DadosItenPedidoDto(iten)));
 	}
 	
 	public Long getId() {
@@ -124,4 +131,12 @@ public class DadosCompraDto {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
+
+	/*
+	 * public List<DadosItenPedidoDto> getItensPedidodDto() { return
+	 * itensPedidodDto; }
+	 * 
+	 * public void setItensPedidodDto(List<DadosItenPedidoDto> itensPedidodDto) {
+	 * this.itensPedidodDto = itensPedidodDto; }
+	 */
 }
